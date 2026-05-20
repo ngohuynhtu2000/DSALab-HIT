@@ -7,7 +7,11 @@ Hiểu Big-O, phân tích độ phức tạp, ôn tập C++ cơ bản.
 
 ### Bài 1: Phân tích Big-O ⭐
 Xác định Big-O của 10 đoạn code C++ cho trước. Giải thích tại sao.
-
+void funcO1(const vector<int>& arr) {
+    if (!arr.empty()) {
+        volatile int temp = arr[0]; // Dùng volatile để compiler không tối ưu hóa bỏ qua dòng này
+    }
+}
 ### Bài 2: Đo thời gian thực tế ⭐⭐
 Dùng `chrono` đo thời gian chạy của O(n), O(n²), O(log n) với n = 1.000 → 100.000. In bảng kết quả.
 
