@@ -7,16 +7,43 @@ Hiểu Big-O, phân tích độ phức tạp, ôn tập C++ cơ bản.
 
 ### Bài 1: Phân tích Big-O ⭐
 Xác định Big-O của 10 đoạn code C++ cho trước. Giải thích tại sao.
-
+void funcO1(const vector<int>& arr) {
+    if (!arr.empty()) {
+        volatile int temp = arr[0]; // Dùng volatile để compiler không tối ưu hóa bỏ qua dòng này
+    }
+}
 ### Bài 2: Đo thời gian thực tế ⭐⭐
 Dùng `chrono` đo thời gian chạy của O(n), O(n²), O(log n) với n = 1.000 → 100.000. In bảng kết quả.
-
+void funcOLogN(const vector<int>& arr) {
+    int left = 0;
+    int right = arr.size() - 1;
+    volatile int target = -1; // Cố tình tìm số không tồn tại để ép vòng lặp chạy đến trường hợp xấu nhất (Worst-case)
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) break;
+        if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+}
 ### Bài 3: Tối ưu hàm ⭐⭐
 Cho 3 hàm O(n²) — tối ưu xuống O(n) hoặc O(n log n). Chứng minh bằng cách đo thời gian.
-
+void funcON(const vector<int>& arr) {
+    volatile long long sum = 0;
+    for (int num : arr) {
+        sum += num;
+    }
+}
 ### Bài 4: 🔥 Dự Án Mini — Big-O Benchmark Tool ⭐⭐⭐
 > **Cảm hứng:** [algorithm-visualizer.org](https://algorithm-visualizer.org)
-
+void funcON2(const vector<int>& arr) {
+    volatile long long sum = 0;
+    int n = arr.size();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            sum += 1;
+        }
+    }
+}
 Viết chương trình **BenchmarkTool** hiển thị bảng so sánh tốc độ các thuật toán:
 ```
 ╔══════════════╦══════════╦══════════╦══════════╗
